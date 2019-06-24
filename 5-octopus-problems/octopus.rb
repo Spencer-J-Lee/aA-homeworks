@@ -58,3 +58,23 @@ def clever_octopus(fishes)
 end
 
 p clever_octopus(fishes) == "fiiiissshhhhhh"
+
+
+# Dancing Octopus
+# Full of fish, the Octopus attempts Dance Dance Revolution. The game has tiles in the following directions:
+
+tiles_array = ["up", "right-up", "right", "right-down", "down", "left-down", "left",  "left-up" ]
+
+# To play the game, the octopus must step on a tile with her corresponding tentacle. 
+# We can assume that the octopus's eight tentacles are numbered and correspond to the tile direction indices.
+
+# Slow Dance
+# Given a tile direction, iterate through a tiles array to return the tentacle number (tile index) the octopus must move. 
+# This should take O(n) time.
+
+def slow_dance(direction, tiles_array)
+	tiles_array.each_index { |i| return i if tiles_array[i] == direction }
+end
+
+p slow_dance("up", tiles_array) == 0
+p slow_dance("right-down", tiles_array) == 3
