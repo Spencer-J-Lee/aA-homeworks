@@ -47,4 +47,14 @@ p dominant_octopus(fishes).last == "fiiiissshhhhhh"
 # Clever Octopus
 # Find the longest fish in O(n) time. 
 # The octopus can hold on to the longest fish that you have found so far while stepping through the array only once.
+def clever_octopus(fishes)
+	longest_fish = nil
 
+	fishes.each do |fish|
+		longest_fish = fish if longest_fish.nil? || fish.length > longest_fish.length
+	end
+
+	longest_fish
+end
+
+p clever_octopus(fishes) == "fiiiissshhhhhh"
