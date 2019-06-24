@@ -6,15 +6,16 @@ fishes = ['fish', 'fiiish', 'fiiiiish', 'fiiiish', 'fffish', 'ffiiiiisshh', 'fsh
 # Find the longest fish in O(n^2) time. Do this by comparing all fish lengths to all other fish lengths
 
 def sluggish_octopus(fishes)
-	longest_fish = nil
+	fishes.each_with_index do |fish1, i1|
+		longest = true
 
-	fishes.each do |fish1|
-		fishes.each do |fish2|
-			longest_fish = fish1 if fish1.length > fish2.length
+		fishes.each_with_index do |fish2, i2|
+			next unless i2 > i1
+			longest = false if fish1.length < fish2.length
 		end
-	end
 
-	longest_fish
+		return fish1 if longest
+	end
 end
 
 p sluggish_octopus(fishes) == 'fiiiissshhhhhh'
@@ -22,12 +23,12 @@ p sluggish_octopus(fishes) == 'fiiiissshhhhhh'
 # Dominant Octopus
 # Find the longest fish in O(n log n) time. Remember that Big O is classified by the dominant term.
 
-def dominant_octopus(fishes)
+def fish_sorter(fishes)
 	return fishes if fishes.count < 2
 
 	middle      							= fishes.length / 2
 	left, right 							= fishes.take(middle), fishes.drop(middle)
-	sorted_left, sorted_right = dominant_octopus(left), dominant_octopus(right)
+	sorted_left, sorted_right = fish_sorter(left), fish_sorter(right)
 
 	merge(sorted_left, sorted_right)
 end
@@ -42,7 +43,11 @@ def merge(left, right)
 	merged + left + right
 end
 
-p dominant_octopus(fishes).last == "fiiiissshhhhhh"
+def dominant_octopus(fishes)
+	fish_sorter(fishes).last
+end
+
+p dominant_octopus(fishes) == "fiiiissshhhhhh"
 
 # Clever Octopus
 # Find the longest fish in O(n) time. 
