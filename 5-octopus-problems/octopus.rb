@@ -4,6 +4,7 @@ fishes = ['fish', 'fiiish', 'fiiiiish', 'fiiiish', 'fffish', 'ffiiiiisshh', 'fsh
 
 # Sluggish Octopus
 # Find the longest fish in O(n^2) time. Do this by comparing all fish lengths to all other fish lengths
+
 def sluggish_octopus(fishes)
 	longest_fish = nil
 
@@ -18,9 +19,9 @@ end
 
 p sluggish_octopus(fishes) == 'fiiiissshhhhhh'
 
-
 # Dominant Octopus
 # Find the longest fish in O(n log n) time. Remember that Big O is classified by the dominant term.
+
 def dominant_octopus(fishes)
 	return fishes if fishes.count < 2
 
@@ -43,10 +44,10 @@ end
 
 p dominant_octopus(fishes).last == "fiiiissshhhhhh"
 
-
 # Clever Octopus
 # Find the longest fish in O(n) time. 
 # The octopus can hold on to the longest fish that you have found so far while stepping through the array only once.
+
 def clever_octopus(fishes)
 	longest_fish = nil
 
@@ -58,7 +59,6 @@ def clever_octopus(fishes)
 end
 
 p clever_octopus(fishes) == "fiiiissshhhhhh"
-
 
 # Dancing Octopus
 # Full of fish, the Octopus attempts Dance Dance Revolution. The game has tiles in the following directions:
@@ -78,3 +78,17 @@ end
 
 p slow_dance("up", tiles_array) == 0
 p slow_dance("right-down", tiles_array) == 3
+
+# Constant Dance!
+# Now that the octopus is warmed up, let's help her dance faster. 
+# Use a different data structure and write a new function so that you can access the tentacle number in O(1) time.
+
+tiles_hash = {}
+tiles_array.each_with_index { |tile, i| tiles_hash[tile] = i }
+
+def fast_dance(direction, tiles_hash)
+	tiles_hash[direction]
+end
+
+p fast_dance("up", tiles_hash) == 0
+p fast_dance("right-down", tiles_hash) == 3
