@@ -39,4 +39,23 @@ def my_linear_min(arr)
 	smallest
 end
 
-p my_linear_min(arr) == -100
+p my_linear_min(arr) == -100	# time complexity == O(n)
+
+# Largest Contiguous Sub-sum
+# You have an array of integers and you want to find the largest contiguous (together in sequence) sub-sum. 
+# Find the sums of all contiguous sub-arrays and return the max.
+		
+# Phase I
+# Write a function that iterates through the array and finds all sub-arrays using nested loops. 
+# First make an array to hold all sub-arrays. 
+# Then find the sums of each sub-array and return the max.
+
+
+# Discuss the time complexity of this solution.
+
+# Phase II
+# Let's make a better version. 
+# Write a new function using O(n) time with O(1) memory. 
+# Keep a running tally of the largest sum.
+
+# Get your story straight, and then explain your solution's time complexity to your TA.
