@@ -48,7 +48,13 @@ end
 def small_and_wealthy
   # Show the name and continent of countries where the area is less than 2,000
   # and the gdp is more than 5,000,000,000.
-  execute(<<-SQL)
+	execute(<<-SQL)
+		SELECT
+		  name, continent
+		FROM
+		  countries
+		WHERE
+		  area < 2000 AND gdp > 5000000000
   SQL
 end
 
@@ -77,6 +83,7 @@ system 'clear'
 
 # name, continent, area, population, gdp
 
+# For Testing
 table =
 execute(<<-SQL)
 	SELECT name, (gdp / population) AS per_capita_gdp
