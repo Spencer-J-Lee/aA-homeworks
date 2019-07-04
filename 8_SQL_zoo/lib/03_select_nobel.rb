@@ -74,8 +74,11 @@ def eighties_literature
   # for 1980 to 1989 inclusive.
   execute(<<-SQL)
 		SELECT
+			*
 		FROM
+			nobels
 		WHERE
+			subject = 'Literature' AND (yr BETWEEN 1980 AND 1989)
   SQL
 end
 
