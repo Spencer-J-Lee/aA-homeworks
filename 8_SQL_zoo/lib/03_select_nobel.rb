@@ -23,7 +23,13 @@ end
 
 def prizes_from_1950
   # Display Nobel prizes for 1950.
-  execute(<<-SQL)
+	execute(<<-SQL)
+		SELECT
+			*
+		FROM
+			nobels
+		WHERE
+			yr = 1950
   SQL
 end
 
@@ -64,3 +70,13 @@ def nobel_johns
   execute(<<-SQL)
   SQL
 end
+
+# For Testing
+# yr, subject, winner
+
+table = execute(<<-SQL)
+	SELECT *
+	FROM nobels
+SQL
+
+table.each { |row| p row }
