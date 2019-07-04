@@ -89,8 +89,11 @@ def just_the_right_size
   # BETWEEN allows range checking - note that it is inclusive.
 	execute(<<-SQL)
 	SELECT 
+		name, (area / 1000) AS thousands_of_square_km
 	FROM
+		countries
 	WHERE
+		area BETWEEN 200000 AND 250000
   SQL
 end
 
@@ -101,12 +104,12 @@ system 'clear'
 # For Testing
 table =
 	execute(<<-SQL)
-		SELECT 
-			name
-		FROM 
-			countries
-		WHERE 
-			name LIKE 'G%'
+	SELECT 
+		name, (area / 1000) AS thousands_of_square_km
+	FROM
+		countries
+	WHERE
+		area BETWEEN 200000 AND 250000
   SQL
 
 table.each { |row| p row }
