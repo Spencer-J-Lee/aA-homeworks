@@ -87,8 +87,11 @@ def presidential_prizes
   # 'Woodrow Wilson', 'Jimmy Carter')
   execute(<<-SQL)
 		SELECT
+			*
 		FROM
+			nobels
 		WHERE
+			winner IN ('Theodore Roosevelt', 'Woodrow Wilson', 'Jimmy Carter')
   SQL
 end
 
