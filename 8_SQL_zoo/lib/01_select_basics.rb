@@ -35,7 +35,13 @@ end
 def per_capita_gdp
   # Show the name and per capita gdp (gdp/population) for each country where
   # the area is over 5,000,000 km^2
-  execute(<<-SQL)
+	execute(<<-SQL)
+		SELECT
+		  name, (gdp / population) AS per_capita_gdp
+		FROM
+		  countries
+		WHERE
+		  area > 5000000
   SQL
 end
 
@@ -66,3 +72,16 @@ def just_the_right_size
   execute(<<-SQL)
   SQL
 end
+
+system 'clear'
+
+# name, continent, area, population, gdp
+
+table =
+execute(<<-SQL)
+	SELECT name, (gdp / population) AS per_capita_gdp
+	FROM countries
+	WHERE area > 5000000
+SQL
+
+table.each { |row| p row }
