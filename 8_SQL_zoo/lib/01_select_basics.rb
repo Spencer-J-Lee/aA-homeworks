@@ -74,9 +74,12 @@ end
 def starts_with_g
   # Show each country that begins with the letter G
 	execute(<<-SQL)
-	SELECT 
-	FROM 
-	WHERE 
+		SELECT 
+			name
+		FROM 
+			countries
+		WHERE 
+			name LIKE 'G%'
   SQL
 end
 
@@ -99,11 +102,11 @@ system 'clear'
 table =
 	execute(<<-SQL)
 		SELECT 
-			*
+			name
 		FROM 
 			countries
 		WHERE 
-			name IN ('Denmark', 'Finland', 'Norway', 'Sweden')
+			name LIKE 'G%'
   SQL
 
 table.each { |row| p row }
