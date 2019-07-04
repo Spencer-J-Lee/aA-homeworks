@@ -61,13 +61,22 @@ end
 def scandinavia
   # Show the name and the population for 'Denmark', 'Finland', 'Norway', and
   # 'Sweden'
-  execute(<<-SQL)
-  SQL
+	execute(<<-SQL)
+		SELECT 
+			name, population
+		FROM 
+			countries
+		WHERE 
+			name IN ('Denmark', 'Finland', 'Norway', 'Sweden')
+	SQL
 end
 
 def starts_with_g
   # Show each country that begins with the letter G
-  execute(<<-SQL)
+	execute(<<-SQL)
+	SELECT 
+	FROM 
+	WHERE 
   SQL
 end
 
@@ -75,7 +84,10 @@ def just_the_right_size
   # Show the country and the area in 1000's of square kilometers for countries
   # with an area between 200,000 and 250,000.
   # BETWEEN allows range checking - note that it is inclusive.
-  execute(<<-SQL)
+	execute(<<-SQL)
+	SELECT 
+	FROM
+	WHERE
   SQL
 end
 
@@ -85,10 +97,13 @@ system 'clear'
 
 # For Testing
 table =
-execute(<<-SQL)
-	SELECT name, (gdp / population) AS per_capita_gdp
-	FROM countries
-	WHERE area > 5000000
-SQL
+	execute(<<-SQL)
+		SELECT 
+			*
+		FROM 
+			countries
+		WHERE 
+			name IN ('Denmark', 'Finland', 'Norway', 'Sweden')
+  SQL
 
 table.each { |row| p row }
