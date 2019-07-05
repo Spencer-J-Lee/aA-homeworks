@@ -99,9 +99,9 @@ def title_tracks
 		FROM
 			albums
 		INNER JOIN
-			tracks ON tracks.album = album.asin
+			tracks ON tracks.album = albums.asin
 		WHERE
-			tracks.song = album.title
+			tracks.song = albums.title
   SQL
 end
 
@@ -121,7 +121,7 @@ end
 def song_title_counts
   # Select the song names that appear on more than two albums. Also select the
   # COUNT of times they show up.
-  execute(<<-SQL)
+	execute(<<-SQL)
   SQL
 end
 
