@@ -108,11 +108,19 @@ def casablanca_id
 			title = 'Casablanca'
   SQL
 end
-
+p casablanca_id
 def casablanca_cast
   # Obtain the cast list for 'Casablanca'. Use the id value that you obtained
   # in the previous question directly in your query (for example, id = 1).
-  execute(<<-SQL)
+	execute(<<-SQL)
+		SELECT
+			name
+		FROM
+			actors 
+		INNER JOIN 
+			castings ON actors.id = castings.actor_id
+		WHERE
+			castings.movie_id = 27
   SQL
 end
 
