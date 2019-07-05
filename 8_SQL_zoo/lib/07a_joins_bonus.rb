@@ -160,7 +160,20 @@ def top_track_counts
   # Wagner's Ring cycle has an imposing 173 tracks, Bing Crosby clocks up 101
   # tracks. List the top 10 albums. Select both the album title and the track
   # count, and order by both track count and title (descending).
-  execute(<<-SQL)
+	execute(<<-SQL)
+		SELECT
+			albums.title,
+			COUNT(tracks.*)
+		FROM
+			albums
+		INNER JOIN
+			tracks ON tracks.album = albums.asin
+		GROUP BY
+			albums.asin
+		ORDER BY
+			COUNT(tracks.*) DESC, albums.title DESC
+		LIMIT
+			10
   SQL
 end
 
