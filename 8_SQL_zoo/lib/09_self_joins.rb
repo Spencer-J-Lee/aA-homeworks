@@ -1,11 +1,13 @@
 # == Schema Information
 #
 # Table name: stops
+#	["233", "Tranent"]
 #
 #  id          :integer      not null, primary key
 #  name        :string
 #
 # Table name: routes
+# ["R2", "ROU", "2", "59"]
 #
 #  num         :string       not null, primary key
 #  company     :string       not null, primary key
@@ -16,7 +18,11 @@ require_relative './sqlzoo.rb'
 
 def num_stops
   # How many stops are in the database?
-  execute(<<-SQL)
+	execute(<<-SQL)
+		SELECT
+			COUNT(*)
+		FROM
+			stops
   SQL
 end
 
