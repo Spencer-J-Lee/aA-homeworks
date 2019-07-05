@@ -181,7 +181,20 @@ end
 def craiglockhart_and_tollcross
   # Give the company and num of the services that connect stops
   # 'Craiglockhart' and 'Tollcross'
-  execute(<<-SQL)
+	execute(<<-SQL)
+		SELECT DISTINCT
+			start_route.company,
+			start_route.num
+		FROM
+			routes AS start_route
+		INNER JOIN
+			routes AS end_route ON (end_route.company = start_route.company AND end_route.num = start_route.num)
+		INNER JOIN
+			stops AS start_stop ON (start_stop.id = start_route.stop_id)
+		INNER JOIN
+			stops AS end_stop ON (end_stop.id = end_route.stop_id)
+		WHERE
+			start_stop.name = 'Craiglockhart' AND end_stop.name = 'Tollcross'
   SQL
 end
 
