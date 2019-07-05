@@ -47,7 +47,14 @@ def all_depts_join
   # Use a different JOIN so that all departments are listed.
   # NB: you can avoid RIGHT OUTER JOIN (and just use LEFT) by swapping
   # the FROM and JOIN tables.
-  execute(<<-SQL)
+	execute(<<-SQL)
+		SELECT
+			teachers.name,
+			depts.name
+		FROM
+			depts
+		LEFT OUTER JOIN
+			teachers ON teachers.dept_id = depts.id
   SQL
 end
 
