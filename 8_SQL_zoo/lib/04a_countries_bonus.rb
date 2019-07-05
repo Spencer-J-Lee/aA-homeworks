@@ -16,7 +16,20 @@ require_relative './sqlzoo.rb'
 def highest_gdp
   # Which countries have a GDP greater than every country in Europe? (Give the
   # name only. Some countries may have NULL gdp values)
-  execute(<<-SQL)
+	execute(<<-SQL)
+		SELECT
+			name
+		FROM
+			countries
+		WHERE
+			gdp > (
+				SELECT
+					MAX(gdp)
+				FROM
+					countries
+				WHERE
+					continent = 'Europe'
+			)
   SQL
 end
 
