@@ -202,7 +202,21 @@ def start_at_craiglockhart
   # Give a distinct list of the stops that can be reached from 'Craiglockhart'
   # by taking one bus, including 'Craiglockhart' itself. Include the stop name,
   # as well as the company and bus no. of the relevant service.
-  execute(<<-SQL)
+	execute(<<-SQL)
+		SELECT DISTINCT
+			destination_stop.name,
+			start_route.company,
+			start_route.num
+		FROM
+			routes AS start_route
+		INNER JOIN
+			routes AS end_route ON (end_route.company = start_route.company AND end_route.num = start_route.num)
+		INNER JOIN
+			stops AS departure_stop ON departure_stop.id = start_route.stop_id
+		INNER JOIN 
+			stops AS destination_stop ON destination_stop.id = end_route.stop_id
+		WHERE
+			departure_stop.name = 'Craiglockhart'
   SQL
 end
 
