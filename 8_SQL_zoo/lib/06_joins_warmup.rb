@@ -35,7 +35,13 @@ end
 
 def films_from_sixty_two
   # List the films where the yr is 1962 [Show id, title]
-  execute(<<-SQL)
+	execute(<<-SQL)
+		SELECT
+			id, title
+		FROM
+			movies
+		WHERE
+			yr = 1962
   SQL
 end
 
@@ -83,3 +89,28 @@ def alien_cast
   execute(<<-SQL)
   SQL
 end
+
+# For Viewing Tables
+
+actors = execute(<<-SQL)
+	SELECT
+		*
+	FROM
+		actors
+SQL
+
+movies = execute(<<-SQL)
+	SELECT
+		*
+	FROM
+		movies
+SQL
+
+castings = execute(<<-SQL)
+	SELECT
+		*
+	FROM
+		castings
+SQL
+
+# [actors, movies, castings].each { |table| table.each { |row| p row }}
