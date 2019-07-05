@@ -75,7 +75,14 @@ def teachers_and_depts
   # Use the COALESCE function and a LEFT JOIN to print the teacher name and
   # department name. Use the string 'None' where there is no
   # department.
-  execute(<<-SQL)
+	execute(<<-SQL)
+		SELECT
+			teachers.name,
+			COALESCE(depts.name, 'None')
+		FROM
+			teachers
+		LEFT OUTER JOIN
+			depts ON depts.id = teachers.dept_id
   SQL
 end
 
