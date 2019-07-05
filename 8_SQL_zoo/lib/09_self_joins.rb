@@ -71,7 +71,19 @@ def connecting_routes
   # (149) or Craiglockhart (53). Run the query and notice the two services
   # that link these stops have a count of 2. Add a HAVING clause to restrict
   # the output to these two routes.
-  execute(<<-SQL)
+	execute(<<-SQL)
+  SELECT
+    company,
+    num,
+    COUNT(*)
+  FROM
+    routes
+  WHERE
+    stop_id = 149 OR stop_id = 53
+  GROUP BY
+		company, num
+	HAVING
+		COUNT(*) = 2
   SQL
 end
 
