@@ -1,6 +1,7 @@
 # == Schema Information
 #
 # Table name: albums
+# ["B00004SBGD", "The Man Who [EXTRA TRACKS]", "Travis", "11.98", "2000-04-04", "Sony", "1598"]
 #
 #  asin        :string       not null, primary key
 #  title       :string
@@ -11,21 +12,32 @@
 #  rank        :integer
 #
 # Table name: styles
+# ["B00000IQMT", "Styles > Soundtracks > Star Wars"]
 #
-# album        :string       not null
-# style        :string       not null
+#  album        :string       not null
+#  style        :string       not null
 #
 # Table name: tracks
-# album        :string       not null
-# disk         :integer      not null
-# posn         :integer      not null
-# song         :string
+# ["B00004SBGD", "1", "8", "Luv"]
+#
+#  album        :string       not null
+#  disk         :integer      not null
+#  posn         :integer      not null
+#  song         :string
 
 require_relative './sqlzoo.rb'
 
 def alison_artist
   # Select the name of the artist who recorded the song 'Alison'.
-  execute(<<-SQL)
+	execute(<<-SQL)
+		SELECT
+			albums.artist
+		FROM
+			albums
+		INNER JOIN
+			tracks ON tracks.album = albums.asin
+		WHERE
+			tracks.song = 'Alison'
   SQL
 end
 
