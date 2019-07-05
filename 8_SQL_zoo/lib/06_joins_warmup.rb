@@ -61,7 +61,15 @@ def trek_films
   # List all of the Star Trek movies, include the id, title and yr (all of
   # these movies include the words Star Trek in the title). Order results by
   # year.
-  execute(<<-SQL)
+	execute(<<-SQL)
+		SELECT
+			id, title, yr
+		FROM
+			movies
+		WHERE
+			title LIKE '%Star Trek%'
+		ORDER BY
+			yr
   SQL
 end
 
