@@ -140,7 +140,19 @@ def best_value
   # A "good value" album is one where the price per track is less than 50
   # pence. Find the good value albums - show the title, the price and the number
   # of tracks.
-  execute(<<-SQL)
+	execute(<<-SQL)
+		SELECT
+			albums.title,
+			albums.price,
+			COUNT(tracks.*)
+		FROM
+			albums
+		INNER JOIN
+			tracks ON tracks.album = albums.asin
+		GROUP BY
+			albums.asin
+		HAVING
+			albums.price / COUNT(tracks.*) < .5
   SQL
 end
 
