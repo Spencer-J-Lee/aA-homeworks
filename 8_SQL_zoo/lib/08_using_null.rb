@@ -90,7 +90,12 @@ def num_teachers_and_mobiles
   # Use COUNT to show the number of teachers and the number of
   # mobile phones.
   # NB: COUNT only counts non-NULL values.
-  execute(<<-SQL)
+	execute(<<-SQL)
+		SELECT
+			COUNT(teachers.name),
+			COUNT(teachers.mobile)
+		FROM
+			teachers
   SQL
 end
 
