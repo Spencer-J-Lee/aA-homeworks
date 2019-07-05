@@ -28,7 +28,13 @@ end
 
 def craiglockhart_id
   # Find the id value for the stop 'Craiglockhart'.
-  execute(<<-SQL)
+	execute(<<-SQL)
+		SELECT
+			id
+		FROM
+			stops
+		WHERE
+			name = 'Craiglockhart'
   SQL
 end
 
