@@ -40,7 +40,16 @@ end
 
 def lrt_stops
   # Give the id and the name for the stops on the '4' 'LRT' service.
-  execute(<<-SQL)
+	execute(<<-SQL)
+		SELECT
+			stops.id,
+			stops.name
+		FROM
+			stops
+		LEFT OUTER JOIN
+			routes ON stops.id = routes.stop_id
+		WHERE
+			routes.company = 'LRT' AND routes.num = '4'
   SQL
 end
 
