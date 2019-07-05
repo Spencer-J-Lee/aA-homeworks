@@ -165,7 +165,16 @@ end
 def haymarket_and_leith
   # Give the company and num of the services that connect stops
   # 115 and 137 ('Haymarket' and 'Leith')
-  execute(<<-SQL)
+	execute(<<-SQL)
+		SELECT DISTINCT
+			start_route.company,
+			start_route.num
+		FROM
+			routes AS start_route
+		INNER JOIN
+			routes AS end_route ON (end_route.company = start_route.company AND end_route.num = start_route.num)
+		WHERE
+			start_route.stop_id = 115 AND end_route.stop_id = 137
   SQL
 end
 
