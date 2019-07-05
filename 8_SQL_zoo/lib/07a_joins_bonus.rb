@@ -57,7 +57,15 @@ end
 
 def blur_songs
   # Select the `song` for each `track` on the album `Blur`.
-  execute(<<-SQL)
+	execute(<<-SQL)
+		SELECT
+			tracks.song
+		FROM
+			tracks
+		INNER JOIN
+			albums ON albums.asin = tracks.album
+		WHERE
+			albums.title = 'Blur'
   SQL
 end
 
