@@ -126,31 +126,21 @@ end
 
 def alien_cast
   # Obtain the cast list for the film 'Alien'
-  execute(<<-SQL)
+	execute(<<-SQL)
+		SELECT
+			name
+		FROM
+			actors
+		INNER JOIN
+			castings ON actors.id = castings.actor_id
+		WHERE 
+			castings.movie_id = (
+				SELECT
+					id
+				FROM
+					movies
+				WHERE
+					title = 'Alien'
+			)
   SQL
 end
-
-# For Viewing Tables
-
-actors = execute(<<-SQL)
-	SELECT
-		*
-	FROM
-		actors
-SQL
-
-movies = execute(<<-SQL)
-	SELECT
-		*
-	FROM
-		movies
-SQL
-
-castings = execute(<<-SQL)
-	SELECT
-		*
-	FROM
-		castings
-SQL
-
-# [actors, movies, castings].each { |table| table.each { |row| p row }}
