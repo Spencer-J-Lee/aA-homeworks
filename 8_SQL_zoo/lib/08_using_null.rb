@@ -62,7 +62,12 @@ def teachers_and_mobiles
   # Use COALESCE to print the mobile number. Use the number '07986
   # 444 2266' if no number is given. Show teacher name and mobile
   # #number or '07986 444 2266'
-  execute(<<-SQL)
+	execute(<<-SQL)
+		SELECT
+			teachers.name,
+			COALESCE(teachers.mobile, '07986 444 2266')
+		FROM
+			teachers
   SQL
 end
 
