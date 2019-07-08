@@ -95,7 +95,15 @@ class PlayWright
 	end
 
 	def update
-		
+		return "#{self} not in database" unless @id
+		PlayDBConnection.instance.execute(<<-SQL, @name, @birth_year, @id)
+			UPDATE
+				playwrights
+			SET
+				name = ?, birth_year = ?
+			WHERE
+				id = ?
+		SQL
 	end
 
 	def get_plays # returns all plays written by playwright)
