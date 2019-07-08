@@ -116,8 +116,20 @@ class PlayWright
 		SQL
 	end
 
-	def get_plays # returns all plays written by playwright)
-		
+	def get_plays # returns all plays written by playwright
+		plays = PlayDBConnection.instance.execute(<<-SQL, @name)
+			SELECT
+				*
+			FROM
+				plays
+			INNER JOIN
+				playwrights ON playwrights.id = plays.playwright_id
+			WHERE
+				playwrights.name = ?
+		SQL
+		return nil if plays.empty?
+
+		plays.map { |datum| Play.new(datum) }
 	end
 end
 
