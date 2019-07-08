@@ -35,9 +35,9 @@ class Play
 	end
 
   def initialize(options)
-    @id = options['id']
-    @title = options['title']
-    @year = options['year']
+    @id 					 = options['id']
+    @title 				 = options['title']
+    @year 				 = options['year']
     @playwright_id = options['playwright_id']
   end
 
@@ -73,9 +73,13 @@ class PlayWright
 	def self.find_by_name(name)
 
 	end
+
+	attr_accessor :id, :name, :birth_year
 	
-	def initialize
-		
+	def initialize(options)
+		@id         = options['id']
+		@name       = options['name']
+		@birth_year = options['birth_year']
 	end
 
 	def create
