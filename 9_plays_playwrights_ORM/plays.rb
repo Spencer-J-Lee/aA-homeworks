@@ -72,7 +72,17 @@ class PlayWright
 	end
 	
 	def self.find_by_name(name)
+		playwright = PlayDBConnection.instance.execute(<<-SQL, name)
+			SELECT
+				*
+			FROM
+				playwrights
+			WHERE
+				name = ?
+		SQL
+		return nil if playwright.empty?
 
+		PlayWright.new(playwright.first)
 	end
 
 	attr_accessor :id, :name, :birth_year
