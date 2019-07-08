@@ -67,7 +67,8 @@ end
 
 class PlayWright
 	def self.all
-
+		playwrights = PlayDBConnection.instance.execute("SELECT * FROM playwrights")
+		playwrights.map { |datum| PlayWright.new(datum) }
 	end
 	
 	def self.find_by_name(name)
