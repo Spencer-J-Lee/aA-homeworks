@@ -30,7 +30,7 @@ def top_titles
   # get movie titles from movies with scores greater than or equal to 9
   # hint: use 'select' and 'where'
 	Movie
-		.select('movies.id', 'movies.title')
+		.select('movies.id, movies.title')
 		.where('movies.score >= ?', 9)
 end
 
@@ -49,7 +49,7 @@ def below_average_years
   #in descending order
 	# hint: use 'select', 'where', 'group', 'order'
 	Movie
-		.select('movies.yr', 'COUNT(movies.title) AS bad_movies')
+		.select('movies.yr, COUNT(movies.title) AS bad_movies')
 		.where('movies.score < ?', 5)
 		.group('movies.yr')
 		.order('movies.yr DESC')
@@ -84,7 +84,7 @@ def pulp_fiction_actors
   # display the id and name of all actors in the movie Pulp Fiction
   # hint: use 'select', 'joins', 'where'
 	Actor
-		.select('actors.id', 'actors.name')
+		.select('actors.id, actors.name')
 		.joins(:movies)
 		.where('movies.title = ?', 'Pulp Fiction')
 end
@@ -93,6 +93,6 @@ def uma_movies
   #practice using joins
   # display the id, title, and year of movies Uma Thurman has acted in
   # order them by ascending year
-  # hint: use 'select', 'joins', 'where', and 'order'
-
+	# hint: use 'select', 'joins', 'where', and 'order'
+	
 end
