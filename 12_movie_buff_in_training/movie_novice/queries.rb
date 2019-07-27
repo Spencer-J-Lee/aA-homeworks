@@ -74,7 +74,9 @@ def alphabetized_actors
   # Note: Ubuntu users may find that special characters
   # are alphabetized differently than the specs.
   # This spec might fail for Ubuntu users. It's ok!
-
+	Actor
+		.order('actors.name ASC')
+		.limit(10)
 end
 
 def pulp_fiction_actors
