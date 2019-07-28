@@ -17,8 +17,4 @@ class House < ApplicationRecord
 
     seeds
   end
-
-  def better_seeds_query
-    # TODO: your code here
-  end
 end

@@ -18,8 +18,4 @@ class Route < ApplicationRecord
 
     all_drivers
   end
-
-  def better_drivers_query
-    # TODO: your code here
-  end
 end

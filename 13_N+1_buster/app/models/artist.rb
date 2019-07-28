@@ -13,8 +13,4 @@ class Artist < ApplicationRecord
 
     tracks_count
   end
-
-  def better_tracks_query
-    # TODO: your code here
-  end
 end
