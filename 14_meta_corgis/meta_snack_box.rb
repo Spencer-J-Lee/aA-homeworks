@@ -51,4 +51,20 @@ class MetaSnackBox
 	def get(box_id, food_type, food_attribute)
 		@data[box_id][food_type][food_attribute]
 	end
+
+	def method_missing(*args)
+		method_name = args[0].to_s
+		box_id 			= args[1]
+
+		raise "Must specific box id." if box_id.nil?
+
+		if method_name.start_with?('get_')
+			method_name 			 = method_name['get_'.length..-1]
+			food_type_and_attr = method_name.split('_').map(&:to_sym)
+			
+			self.get(box_id, *food_type_and_attr)
+		else
+			super
+		end
+	end
 end
