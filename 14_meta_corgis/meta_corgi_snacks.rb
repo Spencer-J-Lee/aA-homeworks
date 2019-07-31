@@ -8,13 +8,12 @@ class MetaCorgiSnacks
   end
 
 	def method_missing(food_type)
-		valid_methods = [:bone, :kibble, :treat]
+		if valid_food_type?(food_type)
+			info      = get_info(food_type)
+			tastiness = get_tastiness(food_type)
+			food_type = food_type.capitalize
 
-		if valid_methods.include?(food_type)
-			info      = @snack_box.send("get_#{food_type}_info", @box_id)
-			tastiness = @snack_box.send("get_#{food_type}_tastiness", @box_id)
-
-			result    = "#{food_type.capitalize}: #{info}: #{tastiness}"
+			result = [food_type, info, tastiness].join(': ')
 
 			tastiness > 30 ? "* #{result}" : result
 		else
@@ -24,5 +23,19 @@ class MetaCorgiSnacks
 
   def self.define_snack(name)
     # Your code goes here...
+	end
+
+	private
+
+	def valid_food_type?(food_type)
+		[:bone, :kibble, :treat].include?(food_type)
+	end
+
+	def get_info(food_type)
+		@snack_box.send("get_#{food_type}_info", @box_id)
+	end
+
+	def get_tastiness(food_type)
+		@snack_box.send("get_#{food_type}_tastiness", @box_id)
 	end
 end
